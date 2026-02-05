@@ -1,0 +1,24 @@
+﻿Analyzing camera_view.dart...                                   
+
+   info - The private field _isWindows could be 'final' - lib\ui\organisms\camera_view.dart:33:8 - prefer_final_fields
+   info - Statements in an if should be enclosed in a block - lib\ui\organisms\camera_view.dart:72:22 - curly_braces_in_flow_control_structures
+  error - 2 positional arguments expected by 'readBarcode', but 1 found - lib\ui\organisms\camera_view.dart:81:14 - not_enough_positional_arguments
+  error - The named parameter 'params' isn't defined - lib\ui\organisms\camera_view.dart:82:9 - undefined_named_parameter
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\organisms\camera_view.dart:172:50 - deprecated_member_use
+
+flutter : 5 issues found. (ran
+ in 5.8s)
+위치 줄:1 문자:1
++ flutter analyze --no-fatal-i
+nfos lib/ui/organisms/camera_v
+iew.dart 2> ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: (5 issues   
+  found. (ran in 5.8s):Stri   
+ ng) [], RemoteException
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 

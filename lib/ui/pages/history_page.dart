@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gf_qr/features/history/history_service.dart';
-import 'package:gf_qr/ui/atoms/glass_container.dart';
+import 'package:QR_Code/features/history/history_service.dart';
+import 'package:QR_Code/ui/atoms/glass_container.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});

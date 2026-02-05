@@ -1,4 +1,4 @@
-name: gf_qr
+name: QR_Code
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -47,6 +47,10 @@ dependencies:
   qr_flutter: ^4.1.0
   share_plus: ^12.0.1
   path: ^1.9.1
+  image: ^4.3.0
+  camera: ^0.10.6
+  camera_windows: ^0.2.1+8
+  zxing2: ^0.2.1+1
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +61,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^6.0.0
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

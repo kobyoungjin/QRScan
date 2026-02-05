@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.antigravity.gf_qr"
+    namespace = "com.antigravity.QR_Code"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.antigravity.gf_qr"
+        applicationId = "com.antigravity.QR_Code"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

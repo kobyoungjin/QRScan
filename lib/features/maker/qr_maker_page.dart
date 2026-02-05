@@ -1,6 +1,14 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:gf_qr/ui/atoms/glass_container.dart';
+import 'package:QR_Code/ui/atoms/glass_container.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:image/image.dart' as img;
 
 enum QRType { profile, website, banking }
 
@@ -16,6 +24,7 @@ class _QRMakerPageState extends State<QRMakerPage> {
   final TextEditingController _primaryController = TextEditingController();
   final TextEditingController _secondaryController = TextEditingController();
   String _qrData = "";
+  final GlobalKey _qrKey = GlobalKey();
 
   @override
   void dispose() {
@@ -118,17 +127,17 @@ class _QRMakerPageState extends State<QRMakerPage> {
   Widget _buildQRDisplay() {
     return Column(
       children: [
-        GlassContainer(
-          borderRadius: 24,
-          opacity: 0.1,
-          child: Padding(
+        RepaintBoundary(
+          key: _qrKey,
+          child: Container(
+            color: Colors.white,
             padding: const EdgeInsets.all(24.0),
             child: QrImageView(
               data: _qrData,
               version: QrVersions.auto,
               size: 200.0,
-              eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.white),
-              dataModuleStyle: const QrDataModuleStyle(dataModuleShape: QrDataModuleShape.circle, color: Colors.white),
+              eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.black),
+              dataModuleStyle: const QrDataModuleStyle(dataModuleShape: QrDataModuleShape.circle, color: Colors.black),
             ),
           ),
         ),
@@ -136,12 +145,108 @@ class _QRMakerPageState extends State<QRMakerPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+            IconButton(
+              onPressed: _shareQR,
+              icon: const Icon(Icons.share),
+              tooltip: 'Share QR Code',
+            ),
             const SizedBox(width: 24),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.download)),
+            IconButton(
+              onPressed: _saveQR,
+              icon: const Icon(Icons.download),
+              tooltip: 'Save QR Code',
+            ),
           ],
         )
       ],
     );
+  }
+
+  Future<File?> _captureQRImage() async {
+    try {
+      final RenderRepaintBoundary boundary =
+          _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      final ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      final ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      final Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+      final directory = await getTemporaryDirectory();
+      final String filePath =
+          '${directory.path}/qr_code_${DateTime.now().millisecondsSinceEpoch}.png';
+      final File file = File(filePath);
+      await file.writeAsBytes(pngBytes);
+      return file;
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error capturing QR code: $e')),
+        );
+      }
+      return null;
+    }
+  }
+
+  Future<void> _saveQR() async {
+    final file = await _captureQRImage();
+    if (file == null) return;
+
+    try {
+      Directory? directory;
+      if (!kIsWeb && Platform.isWindows) {
+        directory = await getDownloadsDirectory();
+      }
+      
+      // Fallback to documents if downloads is unavailable
+      directory ??= await getApplicationDocumentsDirectory();
+
+      final now = DateTime.now();
+      final timestamp = "${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}_"
+                        "${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}${now.second.toString().padLeft(2, '0')}";
+      
+      final String savePath = '${directory.path}/QR_Code_$timestamp.png';
+      final File savedFile = await file.copy(savePath);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('QR code saved to: ${savedFile.path}'),
+            duration: const Duration(seconds: 5),
+            action: SnackBarAction(
+              label: 'Open Folder',
+              onPressed: () {
+                if (Platform.isWindows) {
+                  Process.run('explorer.exe', ['/select,', savedFile.path]);
+                }
+              },
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error saving QR code: $e')),
+        );
+      }
+    }
+  }
+
+  Future<void> _shareQR() async {
+    final file = await _captureQRImage();
+    if (file == null) return;
+
+    try {
+      await Share.shareXFiles(
+        [XFile(file.path)],
+        text: 'QR Code',
+      );
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error sharing QR code: $e')),
+        );
+      }
+    }
   }
 }

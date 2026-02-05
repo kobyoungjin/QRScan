@@ -1,0 +1,33 @@
+# Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+!build/web/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Mobile platforms (not needed for web)
+android/
+ios/
+linux/
+macos/
+windows/
+
+# Test files
+test/
+*_test.dart
+
+# Analysis
+analysis*.txt
+final_report.txt
+last_report.txt

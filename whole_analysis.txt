@@ -1,0 +1,30 @@
+﻿Analyzing QR_Scan...                                            
+
+warning - Unused import: 'package:QR_Code/ui/atoms/glass_container.dart' - lib\features\maker\qr_maker_page.dart:7:8 - unused_import
+warning - Unused import: 'package:image/image.dart' - lib\features\maker\qr_maker_page.dart:10:8 - unused_import
+   info - 'Share' is deprecated and shouldn't be used. Use SharePlus instead - lib\features\maker\qr_maker_page.dart:225:13 - deprecated_member_use
+   info - 'shareXFiles' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead - lib\features\maker\qr_maker_page.dart:225:19 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\atoms\glass_container.dart:26:33 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\atoms\glass_container.dart:29:35 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\molecules\scan_line.dart:44:46 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\molecules\scan_line.dart:52:39 - deprecated_member_use
+   info - The import of 'package:zxing2/zxing2.dart' is unnecessary because all of the used elements are also provided by the import of 'package:zxing2/qrcode.dart' - lib\ui\organisms\camera_view.dart:8:8 - unnecessary_import
+   info - The private field _isWindows could be 'final' - lib\ui\organisms\camera_view.dart:35:8 - prefer_final_fields
+   info - Statements in an if should be enclosed in a block - lib\ui\organisms\camera_view.dart:74:22 - curly_braces_in_flow_control_structures
+  error - Missing concrete implementation of 'abstract class LuminanceSource.getMatrix' - lib\ui\organisms\camera_view.dart:321:7 - non_abstract_class_inherits_abstract_member
+   info - The variable name 'Matrix' isn't a lowerCamelCase identifier - lib\ui\organisms\camera_view.dart:327:17 - non_constant_identifier_names
+warning - The getter doesn't override an inherited getter - lib\ui\organisms\camera_view.dart:327:17 - override_on_non_overriding_member
+  error - '_RGBLuminanceSource.getRow' ('Uint8List Function(int, Uint8List?)') isn't a valid override of 'LuminanceSource.getRow' ('Int8List Function(int, Int8List?)') - lib\ui\organisms\camera_view.dart:343:13 - invalid_override
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\pages\main_navigation_page.dart:33:45 - deprecated_member_use
+
+flutter : 16 issues found. (ran in 8.6s)
+위치 줄:1 문자:1
++ flutter analyze --no-fatal-infos 2>&1 | Out-
+File -FilePath whole_anal ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( 
+   16 issues found. (ran in 8.6s):String) []  
+  , RemoteException
+    + FullyQualifiedErrorId : NativeCommandEr 
+   ror
+ 

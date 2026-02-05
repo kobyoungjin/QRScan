@@ -1,6 +1,6 @@
 {
-    "name": "gf_qr",
-    "short_name": "gf_qr",
+    "name": "QR_Code",
+    "short_name": "QR_Code",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

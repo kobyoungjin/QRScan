@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gf_qr/ui/organisms/camera_view.dart';
-import 'package:gf_qr/ui/atoms/glass_container.dart';
-import 'package:gf_qr/ui/pages/history_page.dart';
+import 'package:QR_Code/ui/organisms/camera_view.dart';
+import 'package:QR_Code/ui/atoms/glass_container.dart';
+import 'package:QR_Code/ui/pages/history_page.dart';
 
 class ScannerPage extends StatelessWidget {
   const ScannerPage({super.key});

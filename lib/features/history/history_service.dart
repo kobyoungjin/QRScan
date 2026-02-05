@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:gf_qr/core/action_resolver.dart';
+import 'package:QR_Code/core/action_resolver.dart';
 
 class HistoryItem {
   final String data;

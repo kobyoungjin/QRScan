@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gf_qr/core/app_theme.dart';
-import 'package:gf_qr/ui/pages/main_navigation_page.dart';
-import 'package:gf_qr/features/history/history_service.dart';
+import 'package:QR_Code/core/app_theme.dart';
+import 'package:QR_Code/ui/pages/main_navigation_page.dart';
+import 'package:QR_Code/features/history/history_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

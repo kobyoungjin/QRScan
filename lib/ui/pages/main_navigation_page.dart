@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gf_qr/ui/pages/scanner_page.dart';
-import 'package:gf_qr/features/maker/qr_maker_page.dart';
-import 'package:gf_qr/ui/atoms/glass_container.dart';
+import 'package:QR_Code/ui/pages/scanner_page.dart';
+import 'package:QR_Code/features/maker/qr_maker_page.dart';
+import 'package:QR_Code/ui/atoms/glass_container.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -30,7 +30,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           opacity: 0.15,
           child: NavigationBarTheme(
             data: NavigationBarThemeData(
-              indicatorColor: Colors.purple.withOpacity(0.3),
+              indicatorColor: Colors.purple.withAlpha(76),
               labelTextStyle: WidgetStateProperty.all(
                 const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
               ),
